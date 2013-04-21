@@ -5,18 +5,21 @@ import logging
 #to be configured based on the Raspbery 
 avrdude_location = "avrdude"
 avrdude_conf = "-C%s" %"./etc/avrdude.conf"
-command = [avrdude_location, avrdude_conf]
+
 
 """
 Uploads the hex program for particular device.
-Currently Arduino UNO and diecimila are only supported
+Currently Arduino uno and diecimila are only supported
 """
 def upload(target_hexfile, device_type):
-    usb_device = "-P%s" %"/dev/tty.usbmodem1421"
+    command = [avrdude_location, avrdude_conf]
+    #print "Upload got %s for burning" % target_hexfile
+    
+    usb_device = "-P%s" %"/dev/tty.usbmodem1411"
     #target_hexfile = "./sampleHex/blink.cpp.hex"
     
     #to be configured based on the target device
-    if device_type is "UNO":  #for UNO    
+    if device_type is "uno":  #for uno    
         _processor = "atmega328p"
         baud_rate = "115200"
     elif device_type is "diecimila":   #for diecimila
@@ -31,8 +34,8 @@ def upload(target_hexfile, device_type):
     returncode = -1
     
     try:
-        proc = subprocess.Popen(command, stdout=subprocess.PIPE)
-        proc.wait()     
+        proc = subprocess.Popen(command, close_fds=True )
+        proc.communicate()     
         returncode = proc.returncode
     except OSError, e:
         print "error while update=%s" % e
@@ -40,7 +43,7 @@ def upload(target_hexfile, device_type):
     return returncode
     
 def main():
-    if (upload("./sampleHex/blink.hex", "UNO") == 0) :
+    if (upload("./sampleHex/blink_uneven.hex", "uno") == 0) :
         print "Successfully uploaded"
     else:
         print "Unsuccessful upload"
