@@ -6,8 +6,7 @@ if(isset($_POST['submit'])) {
 	$submit = $data['submit'];
 
 	$arduino = $data['arduino'];
-	$email = $data['email'];
-
+	
 		if($arduino == 1){  //1 for uno
 		$upload_dir = 'uploads/uno';
 		}
@@ -20,7 +19,7 @@ if(isset($_POST['submit'])) {
 	
 		//the 'name' key of the array holds original filename
 		//we can use original file name here as our destination filename. it will be saved inside our upload directory
-		$destination_file = time()."_".$email."_".$_FILES['hexfile']['name'];	
+		$destination_file = time()."_".$_FILES['hexfile']['name'];	
 		
 		$ext = substr($_FILES['hexfile']['name'], -3);		
 		
