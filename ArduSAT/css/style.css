@@ -25,9 +25,9 @@ textarea {
   float: left;
 /* width: 160px;*/
   
-  margin-top : 5%;
-  margin-left : 25%;
-  margin-right : 25%;
+  margin-top : 20%;
+  margin-left : 0%;
+  margin-right : -230%;
   padding: 30px;  
   text-align: right;
   background-color: #5bb75b;
@@ -57,7 +57,7 @@ textarea {
 .form-horizontal select {
   display: inline-block;
   *display: inline;
-  padding-left: 20px;
+  padding-left: 5px;
   vertical-align: middle;
   *zoom: 1;
 }{
