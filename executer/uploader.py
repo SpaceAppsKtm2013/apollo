@@ -4,27 +4,29 @@ import logging
 
 #to be configured based on the Raspbery 
 avrdude_location = "avrdude"
-avrdude_conf = "-C%s" %"./etc/avrdude.conf"
+avrdude_conf = "-C%s" %"/etc/avrdude.conf"
 
 
 """
 Uploads the hex program for particular device.
-Currently Arduino uno and diecimila are only supported
+Currently Arduino uno and freeduino are only supported
 """
 def upload(target_hexfile, device_type):
     command = [avrdude_location, avrdude_conf]
     #print "Upload got %s for burning" % target_hexfile
     
-    usb_device = "-P%s" %"/dev/tty.usbmodem1411"
+    usb_device = "-P%s" %"/dev/ttyACM0"
     #target_hexfile = "./sampleHex/blink.cpp.hex"
     
     #to be configured based on the target device
     if device_type is "uno":  #for uno    
         _processor = "atmega328p"
         baud_rate = "115200"
-    elif device_type is "diecimila":   #for diecimila
-        _processor ="atmega168"
-        baud_rate = "19200"
+        usb_device = "-P%s" %"/dev/ttyACM0" 
+    elif device_type is "freeduino":   #for freeduino 
+        _processor ="atmega328p"
+        baud_rate = "57600"
+        usb_device = "-P%s" %"/dev/ttyUSB0"
 
     part_no = "-p%s" % _processor    
     mem_ops = "-Uflash:w:%s:i"% target_hexfile

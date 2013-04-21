@@ -3,10 +3,11 @@ import time
 import uploader
 
 #configure according to webserver upload folder locaion
-datafolder = "./data"
+datafolder = "/var/www/ArduSAT/uploads/"
 
 def monitor_folder(device_type):
     folder_name = "%s/%s" % (datafolder , device_type)
+    #folder_name = datafolder
     filenames = os.listdir(folder_name)
     
     
@@ -16,7 +17,7 @@ def monitor_folder(device_type):
         file_infos=filename.split("_")
         timestamp = int(file_infos[0])
         #duration  = int(file_infos[1])
-        duration = 10  #hardcoded for 20 seconds for now
+        duration = 20  #hardcoded for 20 seconds for now
         
         relative_filepath = "%s/%s" % (folder_name,filename)
 
@@ -45,7 +46,7 @@ def process():
     while True:
         monitor_folder("uno")
         time.sleep(2)
-        monitor_folder("diecimila")
+        monitor_folder("freeduino")
         time.sleep(2)
     return
 
