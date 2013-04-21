@@ -29,21 +29,25 @@
         <select>
 		</div>
 		</div>
-		
 		<br>
 		<div class="control-group">
 		<label class="control-label">Hex file </label>
 		<div class="controls">
-		<input type="file" id="hexfile" name="hexfile" value="" >
+		<input type="file" id="hexfile" name="hexfile" value="">
 		</div>
 		<br>
 		<?php if (isset($file_error)) echo "*".$file_error; ?>
 		</div>
-		
 		<br>
-	  <input type="submit" class="btnupload" name="submit" value="Upload">
+			<input type="submit" class="btnupload" name="submit" value="Upload">
+		 
 	</form>
+	
 	</div>
 	</body>
+	
+	<script>
+	
+	</script>
 </html>	
 

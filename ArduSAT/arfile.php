@@ -36,6 +36,8 @@ if(isset($_POST['submit'])) {
 				$file_error = "Only Hex files are allowed";		
 		}
 		
+			
 	}
+	
 ?>
 	
